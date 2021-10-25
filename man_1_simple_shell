@@ -20,23 +20,22 @@ simple_shell \- a simple UNIX command interpreter.
 simple_shell [scripts] [command_string | file] 
 
 .SH DESCRIPTION
-**Simple_shell** is a command-line interpreter for Unix-like operating systems.It provides an interface for a computer user to the Unix/GNU Linux system so that the user can run different commands or utilities/tools with some input data. 
+Simple_shell is a command-line interpreter for Unix-like operating systems.It provides an interface for a computer user to the Unix/GNU Linux system so that the user can run different commands or utilities/tools with some input data. 
 
 
 .SH OPTIONS 
 The simple_shell does not take any options. However, you can supply commands with options. 
-
-**Example** 
+Example 
 ls \- is a command that lists the directory  contents.
 ls [OPTION]... [FILE]... 
 
-	**-a, --all** 
-			do not ignore entries starting with . 
+	-a, --all 
+              do not ignore entries starting with . 
 
-	**-A, --almost-all** 
-			do not list implied . and ..
+	-A, --almost-all 
+              do not list implied . and ..
 
-	**--author**                                                 
+	--author                                          
               with -l, print the author of each file
 
 .SH SEE ALSO
@@ -45,6 +44,8 @@ man bash
 .SH BUGS
 No known bugs.
 
+.SH COPYRIGHT 
+Copyright (C)  2021  Mildred & Michael.
 
 .SH AUTHORS
 Mildred Kwamboka (makorimildred@gmail.com) and Michael Kipkemboy (kipkemboymichael05@gmail.com)
