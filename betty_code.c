@@ -7,7 +7,6 @@
  */
 int int main(void)
 {
-	printf("Hello Simple Shell\n"); 
+	printf("Hello simple_shell!\n");
 	return (0);
-
 }
