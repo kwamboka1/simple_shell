@@ -45,7 +45,7 @@ man bash
 No known bugs.
 
 .SH COPYRIGHT 
-Copyright (C)  2021  Mildred & Michael.
+Copyright (C)  2021  Mildred & Michael. License GPLv3+: version 3 or later <https://kemboy-254.github.io/simple_shell>.  This is a free UNIX command interpreter: you're free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
 
 .SH AUTHORS
 Mildred Kwamboka (makorimildred@gmail.com) and Michael Kipkemboy (kipkemboymichael05@gmail.com)
