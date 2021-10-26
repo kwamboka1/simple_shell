@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <string.h>
 
-void read_command(char cmd[], char *par[])
+void read_s2(char s1[], char *par[])
 {
 	char line[1024];
 	int count = 0, i = 0, j = 0;
@@ -27,7 +27,7 @@ void read_command(char cmd[], char *par[])
 
 	}
 	//first word is the command
-	strcpy(cmd, array[0]);
+	strcpy(s1, array[0]);
 
 	//others are parameters
 	for(int j = 0; j < i; j++)
@@ -50,21 +50,21 @@ void type_prompt()
 
 int main()
 {
-	char cmd[100], command[100], *parameters[20];
+	char s1[100], s2[100], *parameters[20];
 	
 	 // environment variable
 	char *envp[] = {(char *) "PATH=/bin", 0};
 	while (1){					//repeat forever
 		type_prompt();			//display prompt on screen
-		read_command(command, parameters); //read input from terminal
+		read_s2(s2, parameters); //read input from terminal
 		if (fork() != 0)		//parent
 			wait(NULL);			//wait for child
 		else{
-			strcpy (cmd, "/bin/");
-			strcat (cmd, command);
-			execve (cmd, parameters, envp); // execute command
+			strcpy (s1, "/bin/");
+			strcat (s1, s2);
+			execve (s1, parameters, envp); // execute command
 		}
-		if (strcmp (command, "exit") ==0 )
+		if (strcmp (s2, "exit") ==0 )
 			break;
 	}
 	return 0;
