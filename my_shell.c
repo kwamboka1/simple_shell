@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/wait.h>
+//#include <sys/wait.h>
 #include <unistd.h>
 #include <string.h>
 
@@ -45,7 +45,8 @@ void type_prompt()
 		write(STDOUT_FILENO,CLEAR_SCREEN_ANSI,12);
 		first_time = 0;
 	}
-	printf("#cisfun$  "); //display prompt
+
+	write(1,"#cisfun$ ",9); //display prompt
 }
 
 int main()
