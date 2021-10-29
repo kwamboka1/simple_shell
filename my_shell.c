@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-//#include <sys/wait.h>
+#include <sys/wait.h>
 #include <unistd.h>
 #include <string.h>
 
@@ -10,7 +10,7 @@ void read_s2(char s1[], char *par[])
 	int count = 0, i = 0, j = 0;
 	char *array[100], *pch;
 
-	//read one line
+	/**read one line*/
 	for(;;){
 		int c = fgetc(stdin);
 		line[count++] = (char) c;
@@ -20,19 +20,19 @@ void read_s2(char s1[], char *par[])
 	}
 	if(count == 1) return;
 	pch = strtok (line, "\n");
-	//parse the line into words
+	/**parse the line into words*/
 	while(pch != NULL){
 		array[i++] = strdup (pch);
 		pch = strtok(NULL, "\n");
 
 	}
-	//first word is the command
+	/**first word is the command*/
 	strcpy(s1, array[0]);
 
-	//others are parameters
+	/** others are parameters */
 	for(int j = 0; j < i; j++)
 		par[j] = array[j];
-	par[i] = "\0"; //NULL terminates the parameters list
+	par[i] = "\0"; /**NULL terminates the parameters list */
 
 }
 
@@ -40,13 +40,14 @@ void type_prompt()
 {
 	static int first_time = 1;
 	if (first_time) 
-	{					//clear screen for the first time
-		const char* CLEAR_SCREEN_ANSI = "\e[1;1H\else[2J";
-		write(STDOUT_FILENO,CLEAR_SCREEN_ANSI,12);
+	{					/**clear screen for the first time*/
+		const char* CLEAR_SCREEN =system("clear"); /**"\e[1;1H\e[2J";*/
+		
+		write(STDOUT_FILENO,CLEAR_SCREEN,12);
 		first_time = 0;
 	}
 
-	write(1,"#cisfun$ ",9); //display prompt
+	write(1,"#cisfun$ ",9); /**display prompt*/
 }
 
 int main()
@@ -55,15 +56,15 @@ int main()
 	
 	 // environment variable
 	char *envp[] = {(char *) "PATH=/bin", 0};
-	while (1){					//repeat forever
-		type_prompt();			//display prompt on screen
-		read_s2(s2, parameters); //read input from terminal
-		if (fork() != 0)		//parent
-			wait(NULL);			//wait for child
+	while (1){					/**repeat forever*/
+		type_prompt();			/**display prompt on screen*/
+		read_s2(s2, parameters); /**read input from terminal*/
+		if (fork() != 0)		/**parent*/
+			wait(NULL);			/**wait for child*/
 		else{
 			strcpy (s1, "/bin/");
 			strcat (s1, s2);
-			execve (s1, parameters, envp); // execute command
+			execve (s1, parameters, envp); /** execute command*/
 		}
 		if (strcmp (s2, "exit") ==0 )
 			break;
