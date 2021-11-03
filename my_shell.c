@@ -5,14 +5,14 @@
 #include <string.h>
 
 /**
- *main - Entry point
-  *read_s2 - strint to accept the command keyed in by user
-  *type_prompt - displaying a prompt
+  * main - Entry point
+  * read_s2 - strint to accept the command keyed in by user
+  * type_prompt - displaying a prompt
   *
-  *@par - parameters
-  *@s2 - the command
-  *@s1 - the PATH
-  *return - Always 0.
+  * @par - parameters
+  * @s2 - the command
+  * @s1 - the PATH
+  * return - Always 0.
   */
  
  void read_s2(char s1[], char *par[])
