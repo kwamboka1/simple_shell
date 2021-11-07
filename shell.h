@@ -5,5 +5,4 @@ void read_s2(char s1[], char *par[]);
 void type_prompt(void);
 
 
-
-#endif
+#endif /*SHELL_H*/

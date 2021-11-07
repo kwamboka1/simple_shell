@@ -8,15 +8,15 @@
  */
 int exec_line(data_shell *datas)
 {
-        int (*builtin)(data_shell *datas);
+	int (*builtin)(data_shell *datas);
 
-        if (datas->args[0] == NULL)
-                return (1);
+	if (datas->args[0] == NULL)
+		return (1);
 
-        builtin = get_builtin(datas->args[0]);
+	builtin = get_builtin(datas->args[0]);
 
-        if (builtin != NULL)
-                return (builtin(datas));
+	if (builtin != NULL)
+		return (builtin(datas));
 
-        return (cmd_exec(datas));
+	return (cmd_exec(datas));
 }

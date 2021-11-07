@@ -28,17 +28,17 @@ extern char **environ;
  * @status: last status of the shell
  * @counter: lines counter
  * @_environ: environment variable
- * @pid: process ID of the shell
+ * @pidi: process ID of the shell
  */
 typedef struct data
 {
-        char **av;
-        char *input;
-        char **args;
-        int status;
-        int counter;
-        char **_environ;
-        char *pid;
+	char **av;
+	char *input;
+	char **args;
+	int status;
+	int counter;
+	char **_environ;
+	char *pidi;
 } data_shell;
 
 /**
@@ -49,36 +49,36 @@ typedef struct data
  **/
 typedef struct sep_list_s
 {
-        char separator;
-        struct sep_list_s *next;
+	char separator;
+	struct sep_list_s *next;
 } sep_list;
 
 /**
- * * struct line_list_s - single linked list
- * * @line: command line
- * * @next: next node
- * * Description: single linked list to store command lines
- * */
+ * struct line_list_s - single linked list
+ * @line: command line
+ * @next: next node
+ * Description: single linked list to store command lines
+  */
 typedef struct line_list_s
 {
-        char *line;
-        struct line_list_s *next;
+	char *line;
+	struct line_list_s *next;
 } line_list;
 
 /**
- *  * struct r_var_list - single linked list
- *  * @len_var: length of the variable
- *  * @val: value of the variable
- *  * @len_val: length of the value
- *  * @next: next node
- *  * Description: single linked list to store variables
- *  */
+ * struct r_var_list - single linked list
+ * @len_var: length of the variable
+ * @val: value of the variable
+ * @len_val: length of the value
+ * @next: next node
+ * Description: single linked list to store variables
+ */
 typedef struct r_var_list
 {
-        int len_var;
-        char *val;
-        int len_val;
-        struct r_var_list *next;
+	int len_var;
+	char *val;
+	int len_val;
+	struct r_var_list *next;
 } r_var;
 
 /**
@@ -88,8 +88,8 @@ typedef struct r_var_list
  */
 typedef struct builtin_s
 {
-        char *name;
-        int (*f)(data_shell *datas);
+	char *name;
+	int (*f)(data_shell *datas);
 } builtin_t;
 
 /* aux_lists.c */
@@ -231,4 +231,4 @@ void aux_help_cd(void);
 /* get_help.c */
 int get_help(data_shell *datas);
 
-#endif
+#endif /*MAIN_H*/

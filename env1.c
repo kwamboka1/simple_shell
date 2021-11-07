@@ -10,17 +10,17 @@
  */
 int cmp_env_name(const char *nenv, const char *name)
 {
-        int i;
+	int i;
 
-        for (i = 0; nenv[i] != '='; i++)
-        {
-                if (nenv[i] != name[i])
-                {
-                        return (0);
-                }
-        }
+	for (i = 0; nenv[i] != '='; i++)
+	{
+		if (nenv[i] != name[i])
+		{
+			return (0);
+		}
+	}
 
-        return (i + 1);
+	return (i + 1);
 }
 
 /**
@@ -33,27 +33,28 @@ int cmp_env_name(const char *nenv, const char *name)
  */
 char *_getenv(const char *name, char **_environ)
 {
-        char *ptr_env;
-        int i, mov;
+	char *ptr_env;
+	int i, mov;
 
-        /* Initialize ptr_env value */
-        ptr_env = NULL;
-        mov = 0;
+	/* Initialize ptr_env value */
+	ptr_env = NULL;
+	mov = 0;
 
-        /* Compare all environment variables */
-        /* environ is declared in the header file */
-        for (i = 0; _environ[i]; i++)
-        {
-                /* If name and env are equal */
-                mov = cmp_env_name(_environ[i], name);
-                if (mov)
-                {
-                        ptr_env = _environ[i];
-                        break;
-                }
-        }
+	/* Compare all environment variables */
+	/* environ is declared in the header file */
+	for (i = 0; _environ[i]; i++)
+	{
+		/* If name and env are equal */
+		mov = cmp_env_name(_environ[i], name);
 
-        return (ptr_env + mov);
+		if (mov)
+		{
+			ptr_env = _environ[i];
+			break;
+		}
+	}
+
+	return (ptr_env + mov);
 }
 
 /**
@@ -64,18 +65,16 @@ char *_getenv(const char *name, char **_environ)
  */
 int _env(data_shell *datas)
 {
-        int i, j;
+	int i, j;
 
-        for (i = 0; datas->_environ[i]; i++)
-        {
+	for (i = 0; datas->_environ[i]; i++)
+	{
+		for (j = 0; datas->_environ[i][j]; j++)
+			;
+		write(STDOUT_FILENO, datas->_environ[i], j);
+		write(STDOUT_FILENO, "\n", 1);
+	}
+	datas->status = 0;
 
-                for (j = 0; datas->_environ[i][j]; j++)
-                        ;
-
-                write(STDOUT_FILENO, datas->_environ[i], j);
-                write(STDOUT_FILENO, "\n", 1);
-        }
-        datas->status = 0;
-
-        return (1);
+	return (1);
 }

@@ -7,33 +7,34 @@
  */
 char *error_env(data_shell *datas)
 {
-        int length;
-        char *error;
-        char *ver_str;
-        char *msg;
+	int length;
+	char *error;
+	char *ver_str;
+	char *msg;
 
-        ver_str = aux_itoa(datas->counter);
-        msg = ": Unable to add/remove from environment\n";
-        length = _strlen(datas->av[0]) + _strlen(ver_str);
-        length += _strlen(datas->args[0]) + _strlen(msg) + 4;
-        error = malloc(sizeof(char) * (length + 1));
-        if (error == 0)
-        {
-                free(error);
-                free(ver_str);
-                return (NULL);
-        }
+	ver_str = aux_itoa(datas->counter);
+	msg = ": Unable to add/remove from environment\n";
+	length = _strlen(datas->av[0]) + _strlen(ver_str);
+	length += _strlen(datas->args[0]) + _strlen(msg) + 4;
+	error = malloc(sizeof(char) * (length + 1));
 
-        _strcpy(error, datas->av[0]);
-        _strcat(error, ": ");
-        _strcat(error, ver_str);
-        _strcat(error, ": ");
-        _strcat(error, datas->args[0]);
-        _strcat(error, msg);
-        _strcat(error, "\0");
-        free(ver_str);
+	if (error == 0)
+	{
+		free(error);
+		free(ver_str);
+		return (NULL);
+	}
 
-        return (error);
+	_strcpy(error, datas->av[0]);
+	_strcat(error, ": ");
+	_strcat(error, ver_str);
+	_strcat(error, ": ");
+	_strcat(error, datas->args[0]);
+	_strcat(error, msg);
+	_strcat(error, "\0");
+	free(ver_str);
+
+	return (error);
 }
 /**
  * error_path_126 - error message for path and failure denied permission.
@@ -43,27 +44,30 @@ char *error_env(data_shell *datas)
  */
 char *error_path_126(data_shell *datas)
 {
-        int length;
-        char *ver_str;
-        char *error;
+	int length;
+	char *ver_str;
+	char *error;
 
-        ver_str = aux_itoa(datas->counter);
-        length = _strlen(datas->av[0]) + _strlen(ver_str);
-        length += _strlen(datas->args[0]) + 24;
-        error = malloc(sizeof(char) * (length + 1));
-        if (error == 0)
-        {
-                free(error);
-                free(ver_str);
-                return (NULL);
-        }
-        _strcpy(error, datas->av[0]);
-        _strcat(error, ": ");
-        _strcat(error, ver_str);
-        _strcat(error, ": ");
-        _strcat(error, datas->args[0]);
-        _strcat(error, ": Permission denied\n");
-        _strcat(error, "\0");
-        free(ver_str);
-        return (error);
+	ver_str = aux_itoa(datas->counter);
+	length = _strlen(datas->av[0]) + _strlen(ver_str);
+	length += _strlen(datas->args[0]) + 24;
+	error = malloc(sizeof(char) * (length + 1));
+
+	if (error == 0)
+	{
+		free(error);
+		free(ver_str);
+		return (NULL);
+	}
+
+	_strcpy(error, datas->av[0]);
+	_strcat(error, ": ");
+	_strcat(error, ver_str);
+	_strcat(error, ": ");
+	_strcat(error, datas->args[0]);
+	_strcat(error, ": Permission denied\n");
+	_strcat(error, "\0");
+
+	free(ver_str);
+	return (error);
 }
