@@ -19,7 +19,6 @@ int exit_shell(data_shell *datas)
 		is_digit = _isdigit(datas->args[1]);
 		str_len = _strlen(datas->args[1]);
 		big_number = ustatus > (unsigned int)INT_MAX;
-
 		if (!is_digit || str_len > 10 || big_number)
 		{
 			get_error(datas, 2);

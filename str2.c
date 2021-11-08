@@ -32,6 +32,7 @@ int _strlen(const char *s)
 	}
 	return (len);
 }
+
 /**
  * cmp_chars - compare chars of strings
  * @str: input string.
@@ -83,13 +84,13 @@ char *_strtok(char str[], const char *delim)
 	str_start = splitted;
 	if (str_start == str_end) /*Reaching the end*/
 		return (NULL);
+
 	for (bool = 0; *splitted; splitted++)
 	{
 		/*Breaking loop finding the next token*/
 		if (splitted != str_start)
 			if (*splitted && *(splitted - 1) == '\0')
 				break;
-
 		/*Replacing delimiter for null char*/
 		for (i = 0; delim[i]; i++)
 		{
@@ -108,6 +109,7 @@ char *_strtok(char str[], const char *delim)
 		return (NULL);
 	return (str_start);
 }
+
 /**
  * _isdigit - defines if string passed is a number
  *

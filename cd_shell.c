@@ -39,5 +39,6 @@ int cd_shell(data_shell *datas)
 	}
 
 	cd_to(datas);
+
 	return (1);
 }

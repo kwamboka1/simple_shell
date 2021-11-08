@@ -20,17 +20,21 @@ char *without_comment(char *in)
 				free(in);
 				return (NULL);
 			}
+
 			if (in[i - 1] == ' ' || in[i - 1] == '\t' || in[i - 1] == ';')
 				up_to = i;
 		}
 	}
+
 	if (up_to != 0)
 	{
 		in = _realloc(in, i, up_to + 1);
 		in[up_to] = '\0';
 	}
+
 	return (in);
 }
+
 /**
  * shell_loop - Loop of shell
  * @datas: data relevant (av, input, args)
@@ -52,6 +56,7 @@ void shell_loop(data_shell *datas)
 			input = without_comment(input);
 			if (input == NULL)
 				continue;
+
 			if (check_syntax_error(datas, input) == 1)
 			{
 				datas->status = 2;

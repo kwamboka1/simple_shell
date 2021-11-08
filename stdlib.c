@@ -24,6 +24,7 @@ int get_len(int n)
 		lenght++;
 		n1 = n1 / 10;
 	}
+
 	return (lenght);
 }
 /**
@@ -40,6 +41,7 @@ char *aux_itoa(int n)
 	buffer = malloc(sizeof(char) * (lenght + 1));
 	if (buffer == 0)
 		return (NULL);
+
 	*(buffer + lenght) = '\0';
 
 	if (n < 0)

@@ -2,13 +2,15 @@
 
 /**
  * cd_dot - changes to the parent directory
+ *
  * @datas: data relevant (environ)
  *
  * Return: no return
  */
 void cd_dot(data_shell *datas)
 {
-	char pwd[PATH_MAX], *dir, *cp_pwd, *cp_strtok_pwd;
+	char pwd[PATH_MAX];
+	char *dir, *cp_pwd, *cp_strtok_pwd;
 
 	getcwd(pwd, sizeof(pwd));
 	cp_pwd = _strdup(pwd);
@@ -31,6 +33,7 @@ void cd_dot(data_shell *datas)
 	if (cp_strtok_pwd != NULL)
 	{
 		cp_strtok_pwd = _strtok(NULL, "\0");
+
 		if (cp_strtok_pwd != NULL)
 			rev_string(cp_strtok_pwd);
 	}
@@ -47,6 +50,7 @@ void cd_dot(data_shell *datas)
 	datas->status = 0;
 	free(cp_pwd);
 }
+
 /**
  * cd_to - changes to a directory given
  * by the user
@@ -56,22 +60,29 @@ void cd_dot(data_shell *datas)
  */
 void cd_to(data_shell *datas)
 {
-	char pwd[PATH_MAX], cd.c, *dir, *cp_pwd, *cp_dir;
+	char pwd[PATH_MAX];
+	char *dir, *cp_pwd, *cp_dir;
 
 	getcwd(pwd, sizeof(pwd));
+
 	dir = datas->args[1];
 	if (chdir(dir) == -1)
 	{
 		get_error(datas, 2);
 		return;
 	}
+
 	cp_pwd = _strdup(pwd);
 	set_env("OLDPWD", cp_pwd, datas);
+
 	cp_dir = _strdup(dir);
 	set_env("PWD", cp_dir, datas);
+
 	free(cp_pwd);
 	free(cp_dir);
+
 	datas->status = 0;
+
 	chdir(dir);
 }
 
@@ -88,23 +99,32 @@ void cd_previous(data_shell *datas)
 
 	getcwd(pwd, sizeof(pwd));
 	cp_pwd = _strdup(pwd);
+
 	p_oldpwd = _getenv("OLDPWD", datas->_environ);
+
 	if (p_oldpwd == NULL)
 		cp_oldpwd = cp_pwd;
 	else
 		cp_oldpwd = _strdup(p_oldpwd);
+
 	set_env("OLDPWD", cp_pwd, datas);
+
 	if (chdir(cp_oldpwd) == -1)
 		set_env("PWD", cp_pwd, datas);
 	else
 		set_env("PWD", cp_oldpwd, datas);
+
 	p_pwd = _getenv("PWD", datas->_environ);
+
 	write(STDOUT_FILENO, p_pwd, _strlen(p_pwd));
 	write(STDOUT_FILENO, "\n", 1);
+
 	free(cp_pwd);
 	if (p_oldpwd)
 		free(cp_oldpwd);
+
 	datas->status = 0;
+
 	chdir(p_pwd);
 }
 
@@ -116,23 +136,28 @@ void cd_previous(data_shell *datas)
  */
 void cd_to_home(data_shell *datas)
 {
-	char *p_pwd, *home, pwd[PATH_MAX];
+	char *p_pwd, *home;
+	char pwd[PATH_MAX];
 
 	getcwd(pwd, sizeof(pwd));
 	p_pwd = _strdup(pwd);
+
 	home = _getenv("HOME", datas->_environ);
+
 	if (home == NULL)
 	{
 		set_env("OLDPWD", p_pwd, datas);
 		free(p_pwd);
 		return;
 	}
+
 	if (chdir(home) == -1)
 	{
 		get_error(datas, 2);
 		free(p_pwd);
 		return;
 	}
+
 	set_env("OLDPWD", p_pwd, datas);
 	set_env("PWD", home, datas);
 	free(p_pwd);

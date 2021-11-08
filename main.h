@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef MAIN_
+#define MAIN_
 
 #include <stdio.h>
 #include <unistd.h>
@@ -28,7 +28,7 @@ extern char **environ;
  * @status: last status of the shell
  * @counter: lines counter
  * @_environ: environment variable
- * @pidi: process ID of the shell
+ * @pid: process ID of the shell
  */
 typedef struct data
 {
@@ -38,7 +38,7 @@ typedef struct data
 	int status;
 	int counter;
 	char **_environ;
-	char *pidi;
+	char *pid;
 } data_shell;
 
 /**
@@ -54,11 +54,11 @@ typedef struct sep_list_s
 } sep_list;
 
 /**
- * struct line_list_s - single linked list
- * @line: command line
- * @next: next node
- * Description: single linked list to store command lines
-  */
+ * * struct line_list_s - single linked list
+ * * @line: command line
+ * * @next: next node
+ * * Description: single linked list to store command lines
+ * */
 typedef struct line_list_s
 {
 	char *line;
@@ -66,13 +66,13 @@ typedef struct line_list_s
 } line_list;
 
 /**
- * struct r_var_list - single linked list
- * @len_var: length of the variable
- * @val: value of the variable
- * @len_val: length of the value
- * @next: next node
- * Description: single linked list to store variables
- */
+ *  * struct r_var_list - single linked list
+ *  * @len_var: length of the variable
+ *  * @val: value of the variable
+ *  * @len_val: length of the value
+ *  * @next: next node
+ *  * Description: single linked list to store variables
+ *  */
 typedef struct r_var_list
 {
 	int len_var;
@@ -82,10 +82,10 @@ typedef struct r_var_list
 } r_var;
 
 /**
- * struct builtin_s - Builtin struct for command args.
- * @name: The name of the command builtin i.e cd, exit, env
- * @f: data type pointer function.
- */
+ *  * struct builtin_s - Builtin struct for command args.
+ *   * @name: The name of the command builtin i.e cd, exit, env
+ *    * @f: data type pointer function.
+ *     */
 typedef struct builtin_s
 {
 	char *name;
@@ -139,7 +139,6 @@ void shell_loop(data_shell *datas);
 char *read_line(int *i_eof);
 
 /* split.c */
-
 char *swap_char(char *input, int bool);
 void add_nodes(sep_list **head_s, line_list **head_l, char *input);
 void go_next(sep_list **list_s, line_list **list_l, data_shell *datas);
@@ -231,4 +230,4 @@ void aux_help_cd(void);
 /* get_help.c */
 int get_help(data_shell *datas);
 
-#endif /*MAIN_H*/
+#endif

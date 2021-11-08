@@ -39,14 +39,12 @@ char *_getenv(const char *name, char **_environ)
 	/* Initialize ptr_env value */
 	ptr_env = NULL;
 	mov = 0;
-
 	/* Compare all environment variables */
 	/* environ is declared in the header file */
 	for (i = 0; _environ[i]; i++)
 	{
 		/* If name and env are equal */
 		mov = cmp_env_name(_environ[i], name);
-
 		if (mov)
 		{
 			ptr_env = _environ[i];
@@ -69,8 +67,10 @@ int _env(data_shell *datas)
 
 	for (i = 0; datas->_environ[i]; i++)
 	{
+
 		for (j = 0; datas->_environ[i][j]; j++)
 			;
+
 		write(STDOUT_FILENO, datas->_environ[i], j);
 		write(STDOUT_FILENO, "\n", 1);
 	}

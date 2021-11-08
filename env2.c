@@ -51,6 +51,7 @@ void set_env(char *name, char *value, data_shell *datas)
 		}
 		free(var_env);
 	}
+
 	datas->_environ = _reallocdp(datas->_environ, i, sizeof(char *) * (i + 2));
 	datas->_environ[i] = copy_info(name, value);
 	datas->_environ[i + 1] = NULL;
@@ -65,8 +66,34 @@ void set_env(char *name, char *value, data_shell *datas)
  */
 int _setenv(data_shell *datas)
 {
+
 	if (datas->args[1] == NULL || datas->args[2] == NULL)
-	{get_error(datas, -1);
+	{
+		get_error(datas, -1);
+		return (1);
+	}
+
+	set_env(datas->args[1], datas->args[2], datas);
+
+	return (1);
+}
+
+/**
+ * _unsetenv - deletes a environment variable
+ *
+ * @datas: data relevant (env name)
+ *
+ * Return: 1 on success.
+ */
+int _unsetenv(data_shell *datas)
+{
+	char **realloc_environ;
+	char *var_env, *name_env;
+	int i, j, k;
+
+	if (datas->args[1] == NULL)
+	{
+		get_error(datas, -1);
 		return (1);
 	}
 	k = -1;
@@ -86,7 +113,6 @@ int _setenv(data_shell *datas)
 		return (1);
 	}
 	realloc_environ = malloc(sizeof(char *) * (i));
-
 	for (i = j = 0; datas->_environ[i]; i++)
 	{
 		if (i != k)

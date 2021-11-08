@@ -7,6 +7,7 @@
 */
 int get_help(data_shell *datas)
 {
+
 	if (datas->args[1] == 0)
 		aux_help_general();
 	else if (_strcmp(datas->args[1], "setenv") == 0)
@@ -24,7 +25,9 @@ int get_help(data_shell *datas)
 	else if (_strcmp(datas->args[1], "alias") == 0)
 		aux_help_alias();
 	else
-		write(STDERR_FILENO, datas->args[0], _strlen(datas->args[0]));
+		write(STDERR_FILENO, datas->args[0],
+		      _strlen(datas->args[0]));
+
 	datas->status = 0;
 	return (1);
 }

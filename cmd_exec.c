@@ -15,8 +15,10 @@ int is_cdir(char *path, int *i)
 	{
 		*i += 1;
 	}
+
 	if (path[*i])
 		*i += 1;
+
 	return (0);
 }
 
@@ -51,7 +53,6 @@ char *_which(char *cmd, char **_environ)
 			_strcat(dir, "/");
 			_strcat(dir, cmd);
 			_strcat(dir, "\0");
-
 			if (stat(dir, &st) == 0)
 			{
 				free(ptr_path);
@@ -107,6 +108,7 @@ int is_executable(data_shell *datas)
 	}
 	if (i == 0)
 		return (0);
+
 	if (stat(input + i, &st) == 0)
 	{
 		return (i);
@@ -114,6 +116,7 @@ int is_executable(data_shell *datas)
 	get_error(datas, 127);
 	return (-1);
 }
+
 /**
  * check_error_cmd - verifies if user has permissions to access
  *
@@ -147,6 +150,7 @@ int check_error_cmd(char *dir, data_shell *datas)
 			return (1);
 		}
 	}
+
 	return (0);
 }
 

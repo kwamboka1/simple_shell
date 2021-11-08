@@ -9,13 +9,14 @@
  */
 void bring_line(char **lineptr, size_t *n, char *buffer, size_t j)
 {
+
 	if (*lineptr == NULL)
 	{
 		if  (j > BUFSIZE)
 			*n = j;
+
 		else
 			*n = BUFSIZE;
-
 		*lineptr = buffer;
 	}
 	else if (*n < j)
@@ -32,7 +33,6 @@ void bring_line(char **lineptr, size_t *n, char *buffer, size_t j)
 		free(buffer);
 	}
 }
-
 /**
  * get_line - Read inpt from stream
  * @lineptr: buffer that stores the input
@@ -52,8 +52,8 @@ ssize_t get_line(char **lineptr, size_t *n, FILE *stream)
 		fflush(stream);
 	else
 		return (-1);
-
 	input = 0;
+
 	buffer = malloc(sizeof(char) * BUFSIZE);
 	if (buffer == 0)
 		return (-1);

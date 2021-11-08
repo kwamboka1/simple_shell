@@ -11,6 +11,7 @@ int repeated_char(char *input, int i)
 {
 	if (*(input - 1) == *input)
 		return (repeated_char(input - 1, i + 1));
+
 	return (i);
 }
 
@@ -30,15 +31,19 @@ int error_sep_op(char *input, int i, char last)
 	count = 0;
 	if (*input == '\0')
 		return (0);
+
 	if (*input == ' ' || *input == '\t')
 		return (error_sep_op(input + 1, i + 1, last));
+
 	if (*input == ';')
 		if (last == '|' || last == '&' || last == ';')
 			return (i);
+
 	if (*input == '|')
 	{
 		if (last == ';' || last == '&')
 			return (i);
+
 		if (last == '|')
 		{
 			count = repeated_char(input, 0);
@@ -46,10 +51,12 @@ int error_sep_op(char *input, int i, char last)
 				return (i);
 		}
 	}
+
 	if (*input == '&')
 	{
 		if (last == ';' || last == '|')
 			return (i);
+
 		if (last == '&')
 		{
 			count = repeated_char(input, 0);
@@ -57,6 +64,7 @@ int error_sep_op(char *input, int i, char last)
 				return (i);
 		}
 	}
+
 	return (error_sep_op(input + 1, i + 1, *input));
 }
 
@@ -69,6 +77,7 @@ int error_sep_op(char *input, int i, char last)
  */
 int first_char(char *input, int *i)
 {
+
 	for (*i = 0; input[*i]; *i += 1)
 	{
 		if (input[*i] == ' ' || input[*i] == '\t')
@@ -76,6 +85,7 @@ int first_char(char *input, int *i)
 
 		if (input[*i] == ';' || input[*i] == '|' || input[*i] == '&')
 			return (-1);
+
 		break;
 	}
 
@@ -115,8 +125,8 @@ void print_syntax_error(data_shell *datas, char *input, int i, int bool)
 	counter = aux_itoa(datas->counter);
 	length = _strlen(datas->av[0]) + _strlen(counter);
 	length += _strlen(msg) + _strlen(msg2) + _strlen(msg3) + 2;
-	error = malloc(sizeof(char) * (length + 1));
 
+	error = malloc(sizeof(char) * (length + 1));
 	if (error == 0)
 	{
 		free(counter);
@@ -134,6 +144,7 @@ void print_syntax_error(data_shell *datas, char *input, int i, int bool)
 	free(error);
 	free(counter);
 }
+
 /**
  * check_syntax_error - intermediate function to
  * find and print a syntax error
@@ -154,6 +165,7 @@ int check_syntax_error(data_shell *datas, char *input)
 		print_syntax_error(datas, input, begin, 0);
 		return (1);
 	}
+
 	i = error_sep_op(input + begin, 0, *(input + begin));
 	if (i != 0)
 	{

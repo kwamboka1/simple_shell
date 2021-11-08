@@ -20,6 +20,7 @@ r_var *add_rvar_node(r_var **head, int lvar, char *val, int lval)
 	new->len_var = lvar;
 	new->val = val;
 	new->len_val = lval;
+
 	new->next = NULL;
 	temp = *head;
 

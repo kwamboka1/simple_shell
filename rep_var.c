@@ -31,11 +31,13 @@ void check_env(r_var **h, char *in, data_shell *data)
 				break;
 		}
 	}
+
 	for (j = 0; in[j]; j++)
 	{
 		if (in[j] == ' ' || in[j] == '\t' || in[j] == ';' || in[j] == '\n')
 			break;
 	}
+
 	add_rvar_node(h, j, NULL, 0);
 }
 
@@ -77,6 +79,7 @@ int check_vars(r_var **h, char *in, char *st, data_shell *data)
 				check_env(h, in + i, data);
 		}
 	}
+
 	return (i);
 }
 
@@ -128,6 +131,7 @@ char *replaced_input(r_var **head, char *input, char *new_input, int nlen)
 			j++;
 		}
 	}
+
 	return (new_input);
 }
 
@@ -146,6 +150,7 @@ char *rep_var(char *input, data_shell *datas)
 
 	status = aux_itoa(datas->status);
 	head = NULL;
+
 	olen = check_vars(&head, input, status, datas);
 
 	if (head == NULL)
@@ -153,6 +158,7 @@ char *rep_var(char *input, data_shell *datas)
 		free(status);
 		return (input);
 	}
+
 	indx = head;
 	nlen = 0;
 
@@ -161,12 +167,14 @@ char *rep_var(char *input, data_shell *datas)
 		nlen += (indx->len_val - indx->len_var);
 		indx = indx->next;
 	}
+
 	nlen += olen;
 
 	new_input = malloc(sizeof(char) * (nlen + 1));
 	new_input[nlen] = '\0';
 
 	new_input = replaced_input(&head, input, new_input, nlen);
+
 	free(input);
 	free(status);
 	free_rvar_list(&head);

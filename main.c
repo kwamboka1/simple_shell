@@ -67,7 +67,6 @@ int main(int ac, char **av)
 	set_data(&datas, av);
 	shell_loop(&datas);
 	free_data(&datas);
-
 	if (datas.status < 0)
 		return (255);
 	return (datas.status);

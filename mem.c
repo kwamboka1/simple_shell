@@ -74,6 +74,7 @@ char **_reallocdp(char **ptr, unsigned int old_size, unsigned int new_size)
 
 	if (ptr == NULL)
 		return (malloc(sizeof(char *) * new_size));
+
 	if (new_size == old_size)
 		return (ptr);
 
