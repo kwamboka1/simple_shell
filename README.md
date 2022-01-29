@@ -1,4 +1,5 @@
-# Simple Shell project 0x16.c - m_sh -
+# Simple Shell [Licence: MIT](https://github.com/kwamboka1/simple_shell/blob/main/LICENSE)
+
 This is a simple UNIX command interpreter based on bash and Sh.
 ## Overview
 **m_sh** is a sh-compatible command language interpreter that executes commands read from the standard input or from a file.
